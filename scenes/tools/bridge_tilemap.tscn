@@ -1,23 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://crn8x5uqu6ksh"]
+[gd_scene load_steps=10 format=3 uid="uid://crn8x5uqu6ksh"]
 
 [ext_resource type="Texture2D" uid="uid://b4n5ee7nvaos1" path="res://assets/Tiny Swords (Update 010)/Terrain/Bridge/Bridge_All.png" id="1_glv4x"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mxej5"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_llwwp"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_edbcv"]
+vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_h24wr"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_erhgn"]
+vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_x8cpp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_llvb6"]
 texture = ExtResource("1_glv4x")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_mxej5")
 1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_erhgn")
 2:0/0 = 0
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_x8cpp")
 0:1/0 = 0
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_llwwp")
 1:1/0 = 0
 2:1/0 = 0
 0:2/0 = 0
+0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_edbcv")
 1:2/0 = 0
 0:3/0 = 0
+0:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_h24wr")
 2:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_sgyb5"]
 tile_size = Vector2i(64, 64)
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_llvb6")
 
 [node name="Bridge" type="TileMapLayer"]

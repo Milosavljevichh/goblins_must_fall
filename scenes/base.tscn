@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://ys1gk6rojiam"]
+[gd_scene load_steps=11 format=4 uid="uid://ys1gk6rojiam"]
 
 [ext_resource type="PackedScene" uid="uid://rkuu7k8t3bmq" path="res://scenes/player.tscn" id="1_8q378"]
 [ext_resource type="PackedScene" uid="uid://crn8x5uqu6ksh" path="res://scenes/tools/bridge_tilemap.tscn" id="1_w1m5y"]
@@ -8,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://be1ooapg8p48m" path="res://scenes/tools/water_tilemap.tscn" id="5_uihcv"]
 [ext_resource type="PackedScene" uid="uid://cnsmdegnmfq38" path="res://scenes/tools/borders.tscn" id="6_7ya5k"]
 [ext_resource type="PackedScene" uid="uid://chcfclsvhog5u" path="res://scenes/buildings/house.tscn" id="8_dg6qc"]
+[ext_resource type="PackedScene" uid="uid://bb5uw4k6o4ik2" path="res://scenes/enemies/goblin_basic.tscn" id="9_x1fur"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_o7p0h"]
+vertices = PackedVector2Array(994, 217.133, 1429.45, 222.867, 1435.49, 349.594, 1253.7, 342.602, 994, 265.969, 673.953, 290.031, 674.938, 483.93, 216.078, 481.063, 218.922, 150, 672, 267.031, 672, 150, 993.359, 288.969, 997.359, 350.047, 1173.71, 351.063, 1257.27, 469.813, 1177.3, 471.93, 1560.94, 475.797, 1559.05, 790.938, 873, 787.047, 873, 473.93)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 9), PackedInt32Array(8, 10, 9), PackedInt32Array(5, 9, 4, 11), PackedInt32Array(12, 11, 4, 3, 13), PackedInt32Array(13, 3, 14, 15), PackedInt32Array(14, 16, 17, 18, 15), PackedInt32Array(15, 18, 19)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(209, 140, 206, 491, 685, 494, 684, 300, 984, 299, 988, 360, 1164, 361, 1167, 462, 863, 464, 863, 797, 1569, 801, 1571, 466, 1267, 460, 1264, 353, 1446, 360, 1439, 213, 984, 207, 984, 256, 682, 257, 682, 140)])
 
 [node name="Base" type="Node2D"]
 
@@ -40,3 +46,10 @@ position = Vector2(472, 306)
 
 [node name="House" parent="." instance=ExtResource("8_dg6qc")]
 position = Vector2(287, 184)
+
+[node name="Goblin_basic" parent="." node_paths=PackedStringArray("building") instance=ExtResource("9_x1fur")]
+position = Vector2(1233, 740)
+building = NodePath("../House")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_o7p0h")

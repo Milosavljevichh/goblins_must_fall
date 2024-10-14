@@ -26,3 +26,7 @@ func transition_state(state):
 
 func take_damage():
 	hp -= 1
+
+
+func _on_hit_area_body_entered(body):
+	body.current_state = "attack"
