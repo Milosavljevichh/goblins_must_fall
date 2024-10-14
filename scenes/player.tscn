@@ -1,7 +1,51 @@
-[gd_scene load_steps=17 format=3 uid="uid://rkuu7k8t3bmq"]
+[gd_scene load_steps=29 format=3 uid="uid://rkuu7k8t3bmq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_d0dt5"]
 [ext_resource type="Texture2D" uid="uid://dvupxv1r80oqs" path="res://assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="1_s1b0t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2psl0"]
+atlas = ExtResource("1_s1b0t")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsokq"]
+atlas = ExtResource("1_s1b0t")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fcqo"]
+atlas = ExtResource("1_s1b0t")
+region = Rect2(384, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g872d"]
+atlas = ExtResource("1_s1b0t")
+region = Rect2(576, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66j2s"]
+atlas = ExtResource("1_s1b0t")
+region = Rect2(768, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp8yn"]
+atlas = ExtResource("1_s1b0t")
+region = Rect2(960, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joxf2"]
+atlas = ExtResource("1_s1b0t")
+region = Rect2(192, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avkug"]
+atlas = ExtResource("1_s1b0t")
+region = Rect2(384, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8qok"]
+atlas = ExtResource("1_s1b0t")
+region = Rect2(576, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksud1"]
+atlas = ExtResource("1_s1b0t")
+region = Rect2(768, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1xjk"]
+atlas = ExtResource("1_s1b0t")
+region = Rect2(960, 576, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8vx6v"]
 atlas = ExtResource("1_s1b0t")
@@ -55,6 +99,49 @@ region = Rect2(960, 192, 192, 192)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_2psl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsokq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fcqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g872d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66j2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp8yn")
+}],
+"loop": false,
+"name": &"attack1",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_joxf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avkug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8qok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksud1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1xjk")
+}],
+"loop": false,
+"name": &"attack2",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8vx6v")
 }, {
 "duration": 1.0,
@@ -104,6 +191,9 @@ animations = [{
 radius = 15.0
 height = 40.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0a41e"]
+size = Vector2(63.003, 95.45)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 2
@@ -112,9 +202,9 @@ script = ExtResource("1_d0dt5")
 
 [node name="animator" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0v6bh")
-animation = &"idle"
+animation = &"attack2"
 autoplay = "idle"
-frame_progress = 0.713319
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 20)
@@ -122,3 +212,18 @@ shape = SubResource("CapsuleShape2D_d1l8b")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.1, 1.1)
+
+[node name="hurt_box" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
+position = Vector2(40.0918, -3.45668)
+rotation = 0.743087
+shape = SubResource("RectangleShape2D_0a41e")
+
+[connection signal="animation_changed" from="animator" to="." method="_on_animator_animation_changed"]
+[connection signal="animation_finished" from="animator" to="." method="_on_animator_animation_finished"]
+[connection signal="frame_changed" from="animator" to="." method="_on_animator_frame_changed"]
+[connection signal="body_entered" from="hurt_box" to="." method="_on_hurt_box_body_entered"]

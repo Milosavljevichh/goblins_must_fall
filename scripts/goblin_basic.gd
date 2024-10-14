@@ -3,6 +3,8 @@ extends CharacterBody2D
 const speed = 200
 const acc = 7
 
+var hp = 2
+
 @export var building : StaticBody2D
 @onready var nav_agent = $NavigationAgent2D
 @onready var animator = $animator
@@ -17,3 +19,9 @@ func _physics_process(delta):
 		animator.play("run")
 		velocity = velocity.lerp(direction * speed, delta)
 		move_and_slide()
+	if hp <= 0:
+		queue_free()
+
+func take_damage():
+	hp -= 1
+	print(hp)
