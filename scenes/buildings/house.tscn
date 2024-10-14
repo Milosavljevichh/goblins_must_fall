@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://chcfclsvhog5u"]
+
+[ext_resource type="Script" path="res://scripts/house.gd" id="1_3nv20"]
+[ext_resource type="Texture2D" uid="uid://cbbgrfvavpfbm" path="res://assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/House/House_Blue.png" id="1_yb5rg"]
+[ext_resource type="Texture2D" uid="uid://bjjst3jdpma7r" path="res://assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/House/House_Destroyed.png" id="2_bwcxe"]
+[ext_resource type="Texture2D" uid="uid://y46iq84qgrx3" path="res://assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/House/House_Construction.png" id="3_3yf6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbh6l"]
+size = Vector2(86, 108)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsyr0"]
+size = Vector2(86, 73)
+
+[node name="House" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource("1_3nv20")
+max_hp = 4
+
+[node name="full_hp" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("1_yb5rg")
+
+[node name="full_col" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_qbh6l")
+
+[node name="destroyed" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_bwcxe")
+
+[node name="low_hp" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_3yf6m")
+
+[node name="destroyed_col" type="CollisionShape2D" parent="."]
+position = Vector2(0, 26.5)
+shape = SubResource("RectangleShape2D_fsyr0")
+disabled = true

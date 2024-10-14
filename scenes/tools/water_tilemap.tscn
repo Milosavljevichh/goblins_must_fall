@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://be1ooapg8p48m"]
+
+[ext_resource type="Texture2D" uid="uid://mvkw47vyof1q" path="res://assets/Tiny Swords (Update 010)/Terrain/Water/Water.png" id="1_0s8ln"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i2lec"]
+texture = ExtResource("1_0s8ln")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_pwcpo"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_i2lec")
+
+[node name="Water" type="TileMapLayer"]
+tile_set = SubResource("TileSet_pwcpo")
