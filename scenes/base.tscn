@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://ys1gk6rojiam"]
+[gd_scene load_steps=12 format=4 uid="uid://ys1gk6rojiam"]
 
 [ext_resource type="PackedScene" uid="uid://rkuu7k8t3bmq" path="res://scenes/player.tscn" id="1_8q378"]
 [ext_resource type="PackedScene" uid="uid://crn8x5uqu6ksh" path="res://scenes/tools/bridge_tilemap.tscn" id="1_w1m5y"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cnsmdegnmfq38" path="res://scenes/tools/borders.tscn" id="6_7ya5k"]
 [ext_resource type="PackedScene" uid="uid://chcfclsvhog5u" path="res://scenes/buildings/house.tscn" id="8_dg6qc"]
 [ext_resource type="PackedScene" uid="uid://bb5uw4k6o4ik2" path="res://scenes/enemies/goblin_basic.tscn" id="9_x1fur"]
+[ext_resource type="PackedScene" uid="uid://ty3kg1vqdlyb" path="res://scenes/spawners/goblin_spawner.tscn" id="10_o4udj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o7p0h"]
 vertices = PackedVector2Array(994, 217.133, 1429.45, 222.867, 1435.49, 349.594, 1253.7, 342.602, 994, 265.969, 673.953, 290.031, 674.938, 483.93, 216.078, 481.063, 218.922, 150, 672, 267.031, 672, 150, 993.359, 288.969, 997.359, 350.047, 1173.71, 351.063, 1257.27, 469.813, 1177.3, 471.93, 1560.94, 475.797, 1559.05, 790.938, 873, 787.047, 873, 473.93)
@@ -53,3 +54,8 @@ building = NodePath("../House")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_o7p0h")
+
+[node name="goblin_spawner" parent="." instance=ExtResource("10_o4udj")]
+position = Vector2(1325, 753)
+
+[node name="Enemies" type="Node" parent="."]

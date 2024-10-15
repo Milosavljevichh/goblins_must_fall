@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ty3kg1vqdlyb"]
+
+[ext_resource type="Script" path="res://scripts/goblin_spawner.gd" id="1_6hcmk"]
+
+[node name="goblin_spawner" type="Marker2D"]
+script = ExtResource("1_6hcmk")
+
+[node name="cooldown" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]

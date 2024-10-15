@@ -1,7 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bb5uw4k6o4ik2"]
+[gd_scene load_steps=21 format=3 uid="uid://bb5uw4k6o4ik2"]
 
 [ext_resource type="Script" path="res://scripts/goblin_basic.gd" id="1_vmntl"]
 [ext_resource type="Texture2D" uid="uid://dgq1o3lm3r0r7" path="res://assets/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Red/Torch_Red.png" id="1_vmw2r"]
+[ext_resource type="Script" path="res://scripts/FSM/FSM.gd" id="3_wifyv"]
+[ext_resource type="Script" path="res://scripts/basic_goblin_states/wander_state.gd" id="4_wwjr2"]
+[ext_resource type="Script" path="res://scripts/basic_goblin_states/search_state.gd" id="5_6mtix"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7lxo"]
 atlas = ExtResource("1_vmw2r")
@@ -130,3 +133,20 @@ shape = SubResource("CapsuleShape2D_3na8v")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
 simplify_path = true
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_wifyv")
+initial_state = NodePath("Wander_state")
+
+[node name="Wander_state" type="Node" parent="Node" node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_wwjr2")
+next_state = NodePath("../Search_state")
+
+[node name="Search_state" type="Node" parent="Node"]
+script = ExtResource("5_6mtix")
+
+[node name="pause" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="pause" to="Node/Wander_state" method="_on_pause_timeout"]
